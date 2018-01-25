@@ -12,6 +12,6 @@ public class DataBaseClass {
 		return null;
 	}
 	public ArrayList<Etudiant> getStudNearToDate(int nombreDesJours){
-		
+		return null;
 	}
 }

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="955.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ProgramController">
+   <bottom>
+      <AnchorPane prefHeight="57.0" prefWidth="955.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <center>
+    <AnchorPane minHeight="0.0" minWidth="0.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="412.0" prefWidth="955.0" style="-fx-background-color: #dddddd;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_LEFT" layoutX="13.0" prefHeight="386.0" prefWidth="776.0" spacing="20.0">
+               <children>
+                  <TableView fx:id="infosAbsenteTable" editable="true" prefHeight="327.0" prefWidth="460.0" style="-fx-font-size: 15; -fx-border-color: #8c9eff;" stylesheets="@AbsenteTableStyle.css">
+                    <columns>
+                      <TableColumn fx:id="seanceCol" prefWidth="167.0" text="الاسم الكامل" />
+                        <TableColumn fx:id="subjectCol" prefWidth="136.0" text="تاريخ البداية" />
+                        <TableColumn fx:id="levelCol" prefWidth="155.0" text="تاريخ النهاية" />
+                    </columns>
+                  </TableView>
+                  <JFXButton fx:id="addToDbButt1" prefHeight="39.0" prefWidth="92.0" style="-fx-background-color: #0d47a1;" text="إضافة " textFill="WHITE">
+                     <font>
+                        <Font name="Al-Jazeera-Arabic-Bold" size="13.0" />
+                     </font>
+                  </JFXButton>
+                  <TableView fx:id="TeacherListTableView" prefHeight="300.0" prefWidth="219.0">
+                    <columns>
+                      <TableColumn fx:id="TeachersListTableColumn" minWidth="199.0" prefWidth="199.0" style="-fx-font-size: 15;" text="قائمة المعنيين بالمهمة" />
+                    </columns>
+                  </TableView>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <VBox alignment="CENTER" layoutX="795.0" layoutY="247.0" prefHeight="158.0" prefWidth="144.0" spacing="20.0" style="-fx-border-color: #1a237e; -fx-background-color: #8c9eff;">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <children>
+                  <JFXCheckBox fx:id="open" alignment="CENTER" contentDisplay="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="29.0" prefWidth="179.0" style="-fx-background-color: #004d40;" text="حفظ الملف pdf" textFill="WHITE">
+                     <font>
+                        <Font name="Hacen Algeria Bd" size="17.0" />
+                     </font>
+                  </JFXCheckBox>
+                  <JFXButton fx:id="showAbsenteRaisonButt" buttonType="RAISED" contentDisplay="CENTER" onAction="#showAbsenteRaison" prefHeight="56.0" prefWidth="124.0" ripplerFill="#0d47a1" style="-fx-background-color: #283593;" text="طباعة&#10; طلب مهمة&#10; " textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                     <font>
+                        <Font name="Hacen Algeria Bd" size="17.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </center>
+   <top>
+      <HBox alignment="CENTER_LEFT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="50.0" prefWidth="935.0" spacing="30.0" style="-fx-background-color: #e3f2fd; -fx-border-color: #2962ff;" BorderPane.alignment="CENTER">
+         <children>
+            <JFXTextField fx:id="nameTecherTXTin" prefHeight="39.0" prefWidth="166.0" promptText="اللقب">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="nameTecherTXTin1" layoutX="16.0" layoutY="22.0" prefHeight="39.0" prefWidth="162.0" promptText="الاسم">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="dayOfAbsenteTXTin" layoutX="16.0" layoutY="22.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="39.0" prefWidth="177.0" promptText="تاريخ البداية">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="dayOfAbsenteTXTin1" layoutX="374.0" layoutY="22.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="39.0" prefWidth="188.0" promptText="تاريخ النهاية">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton fx:id="addToDbButt" prefHeight="29.0" prefWidth="112.0" style="-fx-background-color: #0d47a1;" text="إضافة" textFill="WHITE">
+               <font>
+                  <Font name="Al-Jazeera-Arabic-Bold" size="13.0" />
+               </font>
+            </JFXButton>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <opaqueInsets>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="30.0" />
+         </BorderPane.margin>
+      </HBox>
+   </top>
+</BorderPane>
