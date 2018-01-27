@@ -2,6 +2,8 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.TableColumn?>
@@ -14,81 +16,88 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="955.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ProgramController">
    <bottom>
-      <AnchorPane prefHeight="57.0" prefWidth="955.0" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="0.0" prefWidth="955.0" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
-    <AnchorPane minHeight="0.0" minWidth="0.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="412.0" prefWidth="955.0" style="-fx-background-color: #dddddd;" BorderPane.alignment="CENTER">
+    <AnchorPane minHeight="0.0" minWidth="0.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="510.0" prefWidth="955.0" style="-fx-background-color: #c5cae5;" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER_LEFT" layoutX="13.0" prefHeight="386.0" prefWidth="776.0" spacing="20.0">
+            <TableView fx:id="tableSec" layoutX="596.0" layoutY="77.0" prefHeight="311.0" prefWidth="343.0">
+              <columns>
+                <TableColumn fx:id="columnEtudListe" minWidth="199.0" prefWidth="342.0" style="-fx-font-size: 15;" text="liste des etudiants " />
+              </columns>
+            </TableView>
+            <TableView fx:id="tablePrinc" editable="true" layoutX="16.0" layoutY="14.0" prefHeight="448.0" prefWidth="483.0" style="-fx-font-size: 12; -fx-border-color: #8c9eff;" stylesheets="@AbsenteTableStyle.css">
+              <columns>
+                <TableColumn fx:id="columnName" prefWidth="219.0" text="nom &amp; prenom" />
+                  <TableColumn fx:id="columnDeb" prefWidth="120.0" text="date de debut " />
+                  <TableColumn fx:id="columnFin" prefWidth="142.0" text="date de fin" />
+              </columns>
+            </TableView>
+            <HBox alignment="CENTER" depthTest="DISABLE" layoutX="498.0" layoutY="388.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="73.0" prefWidth="450.0" spacing="30.0" style="-fx-background-color: #1a237e;">
                <children>
-                  <TableView fx:id="infosAbsenteTable" editable="true" prefHeight="327.0" prefWidth="460.0" style="-fx-font-size: 15; -fx-border-color: #8c9eff;" stylesheets="@AbsenteTableStyle.css">
-                    <columns>
-                      <TableColumn fx:id="seanceCol" prefWidth="167.0" text="الاسم الكامل" />
-                        <TableColumn fx:id="subjectCol" prefWidth="136.0" text="تاريخ البداية" />
-                        <TableColumn fx:id="levelCol" prefWidth="155.0" text="تاريخ النهاية" />
-                    </columns>
-                  </TableView>
-                  <JFXButton fx:id="addToDbButt1" prefHeight="39.0" prefWidth="92.0" style="-fx-background-color: #0d47a1;" text="إضافة " textFill="WHITE">
-                     <font>
-                        <Font name="Al-Jazeera-Arabic-Bold" size="13.0" />
-                     </font>
-                  </JFXButton>
-                  <TableView fx:id="TeacherListTableView" prefHeight="300.0" prefWidth="219.0">
-                    <columns>
-                      <TableColumn fx:id="TeachersListTableColumn" minWidth="199.0" prefWidth="199.0" style="-fx-font-size: 15;" text="قائمة المعنيين بالمهمة" />
-                    </columns>
-                  </TableView>
-               </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </HBox>
-            <VBox alignment="CENTER" layoutX="795.0" layoutY="247.0" prefHeight="158.0" prefWidth="144.0" spacing="20.0" style="-fx-border-color: #1a237e; -fx-background-color: #8c9eff;">
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
-               <children>
-                  <JFXCheckBox fx:id="open" alignment="CENTER" contentDisplay="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="29.0" prefWidth="179.0" style="-fx-background-color: #004d40;" text="حفظ الملف pdf" textFill="WHITE">
+                  <JFXCheckBox fx:id="ceckBoxPdf" alignment="CENTER" contentDisplay="CENTER" nodeOrientation="RIGHT_TO_LEFT" prefHeight="29.0" prefWidth="179.0" style="-fx-background-color: #004d40;" text="sauvgarder pdf" textFill="WHITE">
                      <font>
                         <Font name="Hacen Algeria Bd" size="17.0" />
                      </font>
                   </JFXCheckBox>
-                  <JFXButton fx:id="showAbsenteRaisonButt" buttonType="RAISED" contentDisplay="CENTER" onAction="#showAbsenteRaison" prefHeight="56.0" prefWidth="124.0" ripplerFill="#0d47a1" style="-fx-background-color: #283593;" text="طباعة&#10; طلب مهمة&#10; " textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                  <JFXButton fx:id="btnPrintOrdre" buttonType="RAISED" contentDisplay="CENTER" onAction="#showAbsenteRaison" prefHeight="52.0" prefWidth="167.0" ripplerFill="#0d47a1" style="-fx-background-color: #283593;" text="imprimer &#10;ordre de mission&#10;" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
                      <font>
-                        <Font name="Hacen Algeria Bd" size="17.0" />
+                        <Font name="Tahoma Bold" size="14.0" />
                      </font>
                   </JFXButton>
                </children>
+               <padding>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </padding>
+            </HBox>
+            <JFXComboBox fx:id="comboBoxRestant" layoutX="629.0" layoutY="20.0" prefHeight="35.0" prefWidth="277.0" promptText="le temp restant" style="-fx-prompt-text-fill: #ffffff; -fx-font-size: 16;" />
+            <VBox alignment="CENTER" layoutX="498.0" layoutY="160.0" prefHeight="176.0" prefWidth="98.0" spacing="10.0" style="-fx-background-color: #1a237e;">
+               <children>
+                  <JFXButton fx:id="btnAjoutEtd" buttonType="RAISED" contentDisplay="CENTER" prefHeight="62.0" prefWidth="89.0" style="-fx-background-color: #0d47a1;" text="ajouter&#10;l'etudiant &#10;au liste &#10;&#10;" textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma Bold" size="13.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="btnSuppStud" buttonType="RAISED" prefHeight="66.0" prefWidth="89.0" style="-fx-background-color: #f44336;" text="suprimer &#10;l'etudiant&#10;" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma Bold" size="13.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+               <padding>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </padding>
             </VBox>
          </children>
+         <padding>
+            <Insets top="40.0" />
+         </padding>
       </AnchorPane>
    </center>
    <top>
-      <HBox alignment="CENTER_LEFT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="50.0" prefWidth="935.0" spacing="30.0" style="-fx-background-color: #e3f2fd; -fx-border-color: #2962ff;" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="91.0" prefWidth="967.0" spacing="30.0" style="-fx-background-color: #1a237e;" BorderPane.alignment="CENTER">
          <children>
-            <JFXTextField fx:id="nameTecherTXTin" prefHeight="39.0" prefWidth="166.0" promptText="اللقب">
+            <JFXTextField fx:id="txtInStudName" labelFloat="true" prefHeight="39.0" prefWidth="166.0" promptText="nom" style="-fx-prompt-text-fill: #ffffff; -fx-text-fill: #ffffff;">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <padding>
+                  <Insets left="3.0" />
+               </padding>
+            </JFXTextField>
+            <JFXTextField fx:id="txtInStudLastName" labelFloat="true" layoutX="16.0" layoutY="22.0" prefHeight="39.0" prefWidth="162.0" promptText="prenom" style="-fx-prompt-text-fill: #ffffff; -fx-text-fill: #ffffff;">
                <font>
                   <Font size="17.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="nameTecherTXTin1" layoutX="16.0" layoutY="22.0" prefHeight="39.0" prefWidth="162.0" promptText="الاسم">
+            <JFXDatePicker fx:id="datePickDebut" promptText="date de debut" style="-fx-prompt-text-fill: #ffffff; -fx-text-fill: #ffffff;" />
+            <JFXDatePicker fx:id="datePickFin" layoutX="337.0" layoutY="27.0" promptText="date de fin" style="-fx-prompt-text-fill: #ffffff; -fx-text-fill: #ffffff;" />
+            <JFXButton fx:id="btnAddStud" prefHeight="57.0" prefWidth="140.0" style="-fx-background-color: #0d47a1;" text="ajouter l'etudiant &#10;aux liste&#10;" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font size="17.0" />
-               </font>
-            </JFXTextField>
-            <JFXTextField fx:id="dayOfAbsenteTXTin" layoutX="16.0" layoutY="22.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="39.0" prefWidth="177.0" promptText="تاريخ البداية">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </JFXTextField>
-            <JFXTextField fx:id="dayOfAbsenteTXTin1" layoutX="374.0" layoutY="22.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="39.0" prefWidth="188.0" promptText="تاريخ النهاية">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </JFXTextField>
-            <JFXButton fx:id="addToDbButt" prefHeight="29.0" prefWidth="112.0" style="-fx-background-color: #0d47a1;" text="إضافة" textFill="WHITE">
-               <font>
-                  <Font name="Al-Jazeera-Arabic-Bold" size="13.0" />
+                  <Font name="Tahoma Bold" size="13.0" />
                </font>
             </JFXButton>
          </children>
@@ -99,7 +108,7 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </opaqueInsets>
          <BorderPane.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="30.0" />
+            <Insets />
          </BorderPane.margin>
       </HBox>
    </top>
