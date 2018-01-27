@@ -13,12 +13,9 @@ public class DataBaseClass {
 	public static Connection conneter() {
 		try {
 			Class.forName("org.sqlite.jdbc.Driver");
-			System.out.println("driver ok");
-			
-			String url = "";
-			
-			Connection cnx = DriverManager.getConnection("jdbc:sqlite:"+url);
+			Connection cnx = DriverManager.getConnection("jdbc:sqlite:/home/ibramahim/github/ordre-de-mission/DataBase/data.db");
 			return cnx;
+			
 		}catch(Exception e){
 			e.printStackTrace();
 			return null;
