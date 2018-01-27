@@ -1,13 +1,29 @@
 package DataBase;
 
-import java.sql.Connection;
+import java.sql.*;
 import java.util.ArrayList;
 
+import com.sun.xml.internal.ws.server.DraconianValidationErrorHandler;
+
 public class DataBaseClass {
-	/* ajouter les methodes nécissaite pour la connexion au base de donnée et 
+	/* ajouter les methodes nï¿½cissaite pour la connexion au base de donnï¿½e et 
 	 * la creation des tableau si'il n'existe pas
 	 *
 	 */
+	public static Connection conneter() {
+		try {
+			Class.forName("org.sqlite.jdbc.Driver");
+			System.out.println("driver ok");
+			
+			String url = "";
+			
+			Connection cnx = DriverManager.getConnection("jdbc:sqlite:"+url);
+			return cnx;
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+	}
 	public ArrayList<Etudiant> getAllStudiants(){
 		return null;
 	}
