@@ -4,5 +4,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="jfoenix.jar"/>
 	<classpathentry kind="lib" path="sqlite-jdbc-3.16.1.jar"/>
+	<classpathentry kind="lib" path="fontawesomefx-8.9.jar"/>
+	<classpathentry kind="lib" path="fontawesomefx-glyphsbrowser-all-1.3.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>

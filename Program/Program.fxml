@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="955.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ProgramController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="955.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Program.ProgramController">
    <bottom>
       <AnchorPane prefHeight="0.0" prefWidth="955.0" BorderPane.alignment="CENTER" />
    </bottom>
@@ -27,7 +27,7 @@
                 <TableColumn fx:id="columnEtudListe" minWidth="199.0" prefWidth="342.0" style="-fx-font-size: 15;" text="liste des employes" />
               </columns>
             </TableView>
-            <TableView fx:id="tablePrinc" editable="true" layoutX="16.0" layoutY="14.0" prefHeight="448.0" prefWidth="483.0" style="-fx-font-size: 12; -fx-border-color: #8c9eff;" stylesheets="@AbsenteTableStyle.css">
+            <TableView fx:id="tablePrinc" editable="true" layoutX="16.0" layoutY="14.0" prefHeight="448.0" prefWidth="483.0" style="-fx-font-size: 12; -fx-border-color: #8c9eff;">
               <columns>
                 <TableColumn fx:id="columnName" prefWidth="219.0" text="nom &amp; prenom" />
                   <TableColumn fx:id="columnDeb" prefWidth="120.0" text="date de debut " />
@@ -69,7 +69,7 @@
                   <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                </padding>
             </VBox>
-            <FontAwesomeIconView glyphName="MaterialDesignIcon.CALENDAR_CLOCK" layoutX="590.0" layoutY="55.0" size="30" wrappingWidth="13.0" />
+            <FontAwesomeIconView glyphName="CALENDAR" layoutX="590.0" layoutY="55.0" size="30" wrappingWidth="13.0" />
          </children>
          <padding>
             <Insets top="40.0" />
