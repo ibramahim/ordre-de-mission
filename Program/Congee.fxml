@@ -7,20 +7,24 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox alignment="TOP_CENTER" prefHeight="326.0" prefWidth="316.0" spacing="30.0" style="-fx-border-radius: 5; -fx-background-color: #80cdc4;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111">
+<VBox alignment="TOP_CENTER" prefHeight="326.0" prefWidth="316.0" spacing="30.0" style="-fx-border-radius: 5; -fx-background-color: #80cdc4;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="337.0" style="-fx-background-color: #00695c;" text="Conge" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Cabin SemiBold" size="31.0" />
          </font>
       </Label>
-      <JFXDatePicker prefHeight="40.0" prefWidth="244.0" promptText="date de depart" style="visibility: 5;" stylesheets="@congeStyle.css" />
-      <JFXDatePicker prefHeight="40.0" prefWidth="244.0" promptText="date de reprise" stylesheets="@congeStyle.css" />
+      <JFXDatePicker fx:id="datePickerDateDeDepart" prefHeight="40.0" prefWidth="244.0" promptText="date de depart" style="visibility: 5;" stylesheets="@style/congeStyle.css" />
+      <JFXDatePicker fx:id="datePickerDateDeReprise" prefHeight="40.0" prefWidth="244.0" promptText="date de reprise" stylesheets="@style/congeStyle.css" />
       <VBox alignment="BOTTOM_CENTER" prefHeight="119.0" prefWidth="316.0">
          <children>
-            <JFXProgressBar prefHeight="5.0" prefWidth="316.0" progress="0.0" />
-            <JFXButton prefHeight="50.0" prefWidth="316.0" style="-fx-background-color: #00695c;" text="enregister les modifications" textFill="WHITE">
+            <Label fx:id="labelStatus" alignment="CENTER" prefHeight="17.0" prefWidth="394.0" textAlignment="CENTER">
+               <font>
+                  <Font name="Tahoma Bold" size="12.0" />
+               </font>
+            </Label>
+            <JFXProgressBar fx:id="progressBar" prefHeight="5.0" prefWidth="316.0" progress="0.0" />
+            <JFXButton fx:id="buttonEregModif" prefHeight="50.0" prefWidth="316.0" style="-fx-background-color: #00695c;" text="enregister les modifications" textFill="WHITE">
                <font>
                   <Font name="Cabin SemiBold" size="24.0" />
                </font>

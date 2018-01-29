@@ -21,7 +21,7 @@ public class DataBaseClass {
 	public static Connection Conneter() {
 		try {
 			Class.forName("org.sqlite.JDBC");
-			Connection cnx = DriverManager.getConnection("jdbc:sqlite:/home/ibramahim/github/ordre-de-mission/DataBase/data.db");
+			Connection cnx = DriverManager.getConnection("jdbc:sqlite:data.db");
 			return cnx;
 			
 		}catch(Exception e){
@@ -29,50 +29,15 @@ public class DataBaseClass {
 			return null;
 		}
 	}
-	
-	
-	public ResultSet Recherch_Employer() {
-
-		try {
-			connection = Conneter();
-			statment = connection.createStatement();
-			result = statment.executeQuery("SELECT * FROM employer");
-			
-			return result;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-
-		
-	}
+<<<<<<< HEAD
 	
 
-	public ResultSet Recherch_Mission(int x) {
-
-		try {
-			connection = Conneter();
-			statment = connection.createStatement();
-			result = statment.executeQuery("SELECT * FROM mission WHERE id =" + x);
-			
-			return result;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-
-		
-	}
-	
-
-	public ResultSet Recherch_Congee(int x) {
+	public ResultSet Recherch_ID(String table, int id) {
 		
 		try {
 			connection = Conneter();
 			statment = connection.createStatement();
-			result = statment.executeQuery("SELECT * FROM congee WHERE id =" + x);
+			result = statment.executeQuery("SELECT * FROM" + table + "WHERE id =" + id);
 			
 			return result;
 		} catch (SQLException e) {
@@ -85,17 +50,44 @@ public class DataBaseClass {
 		
 	}
 
+
+public ResultSet Recherch_Nom_Prenom(String table, String nom, String prenom) {
+	
+	try {
+		connection = Conneter();
+		statment = connection.createStatement();
+		result = statment.executeQuery("SELECT * FROM" + table + "WHERE nom =" + nom + "INTERSECT SELECT * FROM" + table + "WHERE prenom =" + prenom);
+		
+		return result;
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		return null;
+	}
+
 	
 	
-	public static void Ajouter_Mission(Date Ddebut, Date Dfin, String lieux, String projet) {
+}
+
+	
+	public static void Ajouter(String table, Date Ddebut, Date Dfin, String lieux, String projet,String fonction) {
 
 		try {
 
-			String requet = "INSERT INTO mission VALUES (" + Ddebut + "," + Dfin + ",'" + lieux + "','" + projet + "')" ;
-			
+			String requetM = "INSERT INTO mission VALUES (" + Ddebut + "," + Dfin + ",'" + lieux + "','" + projet + "')" ;
+			String requetC = "INSERT INTO congee VALUES (" + Ddebut + "," + Dfin + ")" ;
+			String requetE = "INSERT INTO employer (nom,prenom,fonction) VALUES ('" + lieu + "','" + projet + "','" + fonction + "')" ;
+
 			connection = Conneter();
 			statment = connection.createStatement();
-			statment.executeUpdate(requet);
+
+			if(table == "mission") {
+				statment.executeUpdate(requetM);
+			}else if(table == "congee") {
+						statment.executeUpdate(requetC);
+				  }else {
+					  	statment.executeUpdate(requetE);
+				  }
 			
 
 		} catch (SQLException e) {
@@ -109,60 +101,29 @@ public class DataBaseClass {
 	
 	
 	
-	public static void Ajouter_Congee(Date Ddebut, Date Dfin) {
+
+	
+
+	
+	public static void Modifier(String table, Date Ddebut, Date Dfin, String lieux, String projet, String fonction, int id) {
 
 		try {
 
-			String requet = "INSERT INTO congee VALUES (" + Ddebut + "," + Dfin + ")" ;
+			String requetE = "UPDATE  employer SET nom = '" + lieux + "' ,prenom = '" + projet + "' ,fonction = '" + fonction + "' WHERE id =" + id ;
+			String requetC = "UPDATE  congee SET Ddebut = '" + Ddebut + "' ,Dfin = '" + Dfin +  "' WHERE id =" + id ;
+			String requetM = "UPDATE  mission SET Ddebut = '" + Ddebut + "' ,Dfin = '" + Dfin +  "' ,lieu = '" + lieux + "' ,projet = '" + projet + "' WHERE id =" + id ;
 			
 			connection = Conneter();
 			statment = connection.createStatement();
-			statment.executeUpdate(requet);
-			
 
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			if(table == "mission") {
+				statment.executeUpdate(requetM);
+			}else if(table == "congee") {
+						statment.executeUpdate(requetC);
+				  }else {
+					  	statment.executeUpdate(requetE);
+				  }
 
-		}
-
-		
-	}
-	
-	
-	public static void Ajouter_Employer(String nom, String prenom, String fonction) {
-
-		try {
-
-			String requet = "INSERT INTO employer (nom,prenom,fonction) VALUES ('" + nom + "','" + prenom + "','" + fonction + "')" ;
-			
-			connection = Conneter();
-			statment = connection.createStatement();
-			statment.executeUpdate(requet);
-			
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-
-		}
-
-		
-	}
-
-	
-
-	
-	public static void Modifier_Employer(int id, String nom, String prenom, String fonction) {
-
-		try {
-
-			String requet = "UPDATE  employer SET nom = '" + nom + "' ,prenom = '" + prenom + "' ,fonction = '" + fonction + "' WHERE id =" + id ;
-			
-			connection = Conneter();
-			statment = connection.createStatement();
-			statment.executeUpdate(requet);
-			
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -174,46 +135,6 @@ public class DataBaseClass {
 	}
 
 	
-	public static void Modifier_Congee(int id, Date Ddebut, Date Dfin) {
-
-		try {
-
-			String requet = "UPDATE  congee SET Ddebut = '" + Ddebut + "' ,Dfin = '" + Dfin +  "' WHERE id =" + id ;
-			
-			connection = Conneter();
-			statment = connection.createStatement();
-			statment.executeUpdate(requet);
-			
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-
-		}
-
-		
-	}
-
-	
-	public static void Modifier_Mission(int id, Date Ddebut, Date Dfin, String lieu, String projet) {
-
-		try {
-
-			String requet = "UPDATE  employer SET Ddebut = '" + Ddebut + "' ,Dfin = '" + Dfin +  "' ,lieu = '" + lieu + "' ,projet = '" + projet + "' WHERE id =" + id ;
-			
-			connection = Conneter();
-			statment = connection.createStatement();
-			statment.executeUpdate(requet);
-			
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-
-		}
-
-		
-	}
 
 	
 	
@@ -221,9 +142,12 @@ public class DataBaseClass {
 	
 	
 	public ArrayList<Etudiant> getAllStudiants(){
+=======
+	public ArrayList<Employe> getAllStudiants(){
+>>>>>>> b251dd99bf7dd857fdc967d17a6eaa7b99a77e4c
 		return null;
 	}
-	public ArrayList<Etudiant> getStudNearToDate(int nombreDesJours){
+	public ArrayList<Employe> getStudNearToDate(int nombreDesJours){
 		return null;
 	}
 

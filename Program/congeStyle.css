@@ -1,9 +1,0 @@
-.input .text-field {
-         -fx-prompt-text-fill: #a0a0a0; // or any color you want
-}
-.jfx-date-picker .jfx-text-field {
-	-fx-prompt-text-fill: #ffffff;
-	-fx-text-fill: #ffffff;
-	-fx-font-family:acme;
-	-fx-font-size:26;
-}

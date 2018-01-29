@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXProgressBar?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" prefHeight="326.0" prefWidth="316.0" spacing="10.0" style="-fx-border-radius: 5; -fx-background-color: #8c9eff;" stylesheets="@style/missionStyle.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="337.0" style="-fx-background-color: #1a237e;" text="mission" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Cabin SemiBold" size="31.0" />
+         </font>
+      </Label>
+      <JFXDatePicker fx:id="datePickerDateDepart" prefHeight="40.0" prefWidth="244.0" promptText="date de depart" style="visibility: 5;" stylesheets="@style/missionStyle.css" />
+      <JFXDatePicker fx:id="datePickerDateFin" prefHeight="40.0" prefWidth="244.0" promptText="date de fin" stylesheets="@style/missionStyle.css" />
+      <JFXTextField fx:id="txtInProjet" maxWidth="-Infinity" prefHeight="25.0" prefWidth="244.0" promptText="projet " style="-fx-prompt-text-fill: #ffffff; -fx-text-fill: #311b93;">
+         <font>
+            <Font name="Roboto Bold" size="20.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="txtInLieu" layoutX="10.0" layoutY="158.0" maxWidth="-Infinity" prefHeight="25.0" prefWidth="244.0" promptText="lieu" style="-fx-text-fill: #1b5e20; -fx-prompt-text-fill: #ffffff;">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </JFXTextField>
+      <VBox alignment="BOTTOM_CENTER" prefHeight="119.0" prefWidth="316.0">
+         <children>
+            <Label fx:id="labelStatus" alignment="CENTER" prefHeight="17.0" prefWidth="394.0" textAlignment="CENTER">
+               <font>
+                  <Font name="Tahoma Bold" size="12.0" />
+               </font>
+            </Label>
+            <JFXProgressBar fx:id="progressBar" prefHeight="5.0" prefWidth="316.0" progress="0.0" />
+            <JFXButton fx:id="buttonEnregModif" prefHeight="50.0" prefWidth="316.0" style="-fx-background-color: #1a237e;" text="enregister les modifications" textFill="WHITE">
+               <font>
+                  <Font name="Cabin SemiBold" size="24.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </VBox>
+   </children>
+</VBox>
