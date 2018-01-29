@@ -21,10 +21,10 @@ public class DataBaseClass {
 			return null;
 		}
 	}
-	public ArrayList<Etudiant> getAllStudiants(){
+	public ArrayList<Employe> getAllStudiants(){
 		return null;
 	}
-	public ArrayList<Etudiant> getStudNearToDate(int nombreDesJours){
+	public ArrayList<Employe> getStudNearToDate(int nombreDesJours){
 		return null;
 	}
 }
