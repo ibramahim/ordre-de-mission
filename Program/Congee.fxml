@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXProgressBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox alignment="TOP_CENTER" prefHeight="326.0" prefWidth="316.0" spacing="30.0" style="-fx-border-radius: 5; -fx-background-color: #80cdc4;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="337.0" style="-fx-background-color: #00695c;" text="Conge" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Cabin SemiBold" size="31.0" />
+         </font>
+      </Label>
+      <JFXDatePicker prefHeight="40.0" prefWidth="244.0" promptText="date de depart" style="visibility: 5;" stylesheets="@congeStyle.css" />
+      <JFXDatePicker prefHeight="40.0" prefWidth="244.0" promptText="date de reprise" stylesheets="@congeStyle.css" />
+      <VBox alignment="BOTTOM_CENTER" prefHeight="119.0" prefWidth="316.0">
+         <children>
+            <JFXProgressBar prefHeight="5.0" prefWidth="316.0" progress="0.0" />
+            <JFXButton prefHeight="50.0" prefWidth="316.0" style="-fx-background-color: #00695c;" text="enregister les modifications" textFill="WHITE">
+               <font>
+                  <Font name="Cabin SemiBold" size="24.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </VBox>
+   </children>
+</VBox>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="955.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Program.ProgramController">
+   <bottom>
+      <AnchorPane prefHeight="0.0" prefWidth="955.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <center>
+    <AnchorPane minHeight="0.0" minWidth="0.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="510.0" prefWidth="955.0" style="-fx-background-color: #c5cae5;" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="tableWorkerConserner" layoutX="596.0" layoutY="77.0" prefHeight="311.0" prefWidth="343.0">
+              <columns>
+                <TableColumn fx:id="columnEtudListe" minWidth="199.0" prefWidth="342.0" style="-fx-font-size: 15;" text="liste des employes" />
+              </columns>
+            </TableView>
+            <TableView fx:id="tablePrinc" editable="true" layoutX="16.0" layoutY="14.0" prefHeight="448.0" prefWidth="483.0" style="-fx-font-size: 12; -fx-border-color: #8c9eff;">
+              <columns>
+                <TableColumn fx:id="columnName" prefWidth="219.0" text="nom &amp; prenom" />
+                  <TableColumn fx:id="columnDeb" prefWidth="120.0" text="date de debut " />
+                  <TableColumn fx:id="columnFin" prefWidth="142.0" text="date de fin" />
+              </columns>
+            </TableView>
+            <HBox alignment="CENTER" depthTest="DISABLE" layoutX="498.0" layoutY="388.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="74.0" prefWidth="458.0" spacing="30.0" style="-fx-background-color: #1a237e;">
+               <children>
+                  <JFXCheckBox fx:id="ceckBoxPdf" alignment="CENTER" contentDisplay="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="29.0" prefWidth="179.0" style="-fx-background-color: #004d40;" text="sauvgarder pdf" textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma Bold" size="15.0" />
+                     </font>
+                  </JFXCheckBox>
+                  <JFXButton fx:id="btnPrintOrdre" buttonType="RAISED" contentDisplay="CENTER" onAction="#imprimerLesOrdresDeMissions" prefHeight="52.0" prefWidth="182.0" ripplerFill="#0d47a1" style="-fx-background-color: #283593;" text="imprimer &#10;ordre de mission&#10;" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                     <font>
+                        <Font name="Tahoma Bold" size="14.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+               <padding>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </padding>
+            </HBox>
+            <JFXComboBox fx:id="comboBoxRestant" layoutX="629.0" layoutY="20.0" prefHeight="35.0" prefWidth="277.0" promptText="le temp restant" style="-fx-text-fill: #ffffff; -fx-font-size: 16;" />
+            <VBox alignment="CENTER" layoutX="498.0" layoutY="115.0" prefHeight="233.0" prefWidth="98.0" spacing="10.0" style="-fx-background-color: #1a237e;">
+               <children>
+                  <JFXButton fx:id="btnAjoutEmploye" alignment="CENTER" buttonType="RAISED" contentDisplay="BOTTOM" onAction="#ajouterEmployeAuListe" prefHeight="55.0" prefWidth="89.0" style="-fx-background-color: #0d47a1;" text="ajouter&#10;l'employe&#10;au liste &#10;&#10;" textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="btnSuppWorker" buttonType="RAISED" contentDisplay="BOTTOM" onAction="#SuppWorkerFromDB" prefHeight="45.0" prefWidth="89.0" style="-fx-background-color: #f44336;" text="suprimer &#10;l'employe&#10;&#10;" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+               <padding>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </padding>
+            </VBox>
+            <FontAwesomeIconView glyphName="CALENDAR" layoutX="590.0" layoutY="55.0" size="30" wrappingWidth="13.0" />
+         </children>
+         <padding>
+            <Insets top="40.0" />
+         </padding>
+      </AnchorPane>
+   </center>
+   <top>
+      <HBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="91.0" prefWidth="967.0" spacing="30.0" style="-fx-background-color: #1a237e;" BorderPane.alignment="CENTER">
+         <children>
+            <JFXTextField fx:id="txtInWorkerName" labelFloat="true" prefHeight="39.0" prefWidth="166.0" promptText="nom" style="-fx-prompt-text-fill: #ffffff; -fx-text-fill: #ffffff;">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <padding>
+                  <Insets left="3.0" />
+               </padding>
+            </JFXTextField>
+            <JFXTextField fx:id="txtInWorkerLastName" labelFloat="true" layoutX="16.0" layoutY="22.0" prefHeight="39.0" prefWidth="162.0" promptText="prenom" style="-fx-prompt-text-fill: #ffffff; -fx-text-fill: #ffffff;">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </JFXTextField>
+            <JFXDatePicker fx:id="datePickDebut" promptText="date de debut" />
+            <JFXDatePicker fx:id="datePickFin" layoutX="337.0" layoutY="27.0" promptText="date de fin" style="-fx-prompt-text-fill: #ffffff; -fx-text-fill: #ffffff;" />
+            <JFXButton fx:id="btnAddWorker" buttonType="RAISED" onAction="#insertStudentToTheDB" prefHeight="57.0" prefWidth="140.0" style="-fx-background-color: #0d47a1;" text="ajouter l'employe&#10;aux liste&#10;" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Tahoma Bold" size="13.0" />
+               </font>
+            </JFXButton>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <opaqueInsets>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </HBox>
+   </top>
+</BorderPane>
