@@ -3,6 +3,7 @@ package DataBase;
 import java.util.Date;
 
 public class Employe {
+	
 	String nom, prenom, fonction;
 
 	public Employe(String nom, String prenom, String fonction) {

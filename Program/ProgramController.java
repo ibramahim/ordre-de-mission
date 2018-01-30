@@ -71,8 +71,8 @@ public class ProgramController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		hBoxAffecterA.setDisable(true);
-		hBoxcarteEmploye.setDisable(true);
+		hBoxAffecterA.setVisible(false);
+		hBoxcarteEmploye.setVisible(false);
 		
 	}
 	@FXML
