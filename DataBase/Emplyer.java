@@ -21,7 +21,7 @@ public class Emplyer extends DataBaseClass {
 				+ "fonction TEXT" + ");";
 	}
 
-	public void Ajouter() {
+	public void ajouter() {
 		String requetC = "INSERT INTO Employe (nom,prenom,fonction) VALUES ('" + nom + "','" + prenom + "','"
 				+ fonction + "')";
 		Statement statment = null;
@@ -34,7 +34,7 @@ public class Emplyer extends DataBaseClass {
 		}
 	}
 
-	public void Modifier() {
+	public void modifier() {
 		String requetC = "UPDATE Employe SET nom = '" + nom + "',prenom = '" + prenom + "',fonction = '" + fonction
 				+ "' " + "WHERE id = " + id;
 		Statement statment = null;
@@ -47,7 +47,7 @@ public class Emplyer extends DataBaseClass {
 		}
 	}
 
-	public void Delete() {
+	public void delete() {
 		String requetC = "DELETE FROM Employe WHERE id = " + id + ";";
 		Statement statment = null;
 		try {
@@ -57,5 +57,8 @@ public class Emplyer extends DataBaseClass {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	public String toString(){
+		return id +" , "+nom+" , "+prenom+" , "+fonction;
 	}
 }

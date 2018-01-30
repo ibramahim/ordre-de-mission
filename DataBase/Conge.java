@@ -47,7 +47,7 @@ public class Conge extends DataBaseClass {
 		}
 	}
 
-	public void Delete() {
+	public void delete() {
 		String requetC = "DELETE FROM Conge WHERE id = " + id + ";";
 		Statement statment = null;
 		try {
@@ -57,5 +57,9 @@ public class Conge extends DataBaseClass {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public String toString(){
+		return id + " , " + Ddebut + " , "+Dfin + " , "+employe;
 	}
 }

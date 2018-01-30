@@ -29,8 +29,56 @@ public class DataBaseClass {
 		}
 	}
 
-	public static void main(String[] args) {
+	public ArrayList<Emplyer> getAllEmployes() {
+		Statement stmt = null;
+		ResultSet res = null;
+		ArrayList<Emplyer> empls = new ArrayList<>();
+		try {
+			stmt = connection.createStatement();
+			res = stmt.executeQuery("SELECT * FROM Employe;");
+			while (res.next()) {
+				empls.add(new Emplyer(res.getInt("id"), res.getString("nom"), res.getString("prenom"),
+						res.getString("fonction")));
+			}
+			return empls;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
+	public ArrayList<Mission> getAllMissions() {
+		Statement stmt = null;
+		ResultSet res = null;
+		ArrayList<Mission> empls = new ArrayList<>();
+		try {
+			stmt = connection.createStatement();
+			res = stmt.executeQuery("SELECT * FROM Mission;");
+			while (res.next()) {
+				empls.add(new Mission(res.getInt("id"), res.getString("Ddebut"), res.getString("Dfin"),
+						res.getString("lieu"), res.getString("projet"), res.getInt("employe")));
+			}
+			return empls;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	public ArrayList<Conge> getAllConges() {
+		Statement stmt = null;
+		ResultSet res = null;
+		ArrayList<Conge> empls = new ArrayList<>();
+		try {
+			stmt = connection.createStatement();
+			res = stmt.executeQuery("SELECT * FROM Conge;");
+			while (res.next()) {
+				empls.add(new Conge(res.getInt("id"), res.getString("Ddebut"), res.getString("Dfin"),res.getInt("employe")));
+			}
+			return empls;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

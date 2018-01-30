@@ -10,7 +10,7 @@ public class Mission extends DataBaseClass {
 	public String Dfin;
 	public int employe;
 
-	public Mission(int id, String lieu, String projet, String ddebut, String dfin, int employe) {
+	public Mission(int id, String ddebut, String dfin , String lieu, String projet , int employe) {
 		super();
 		this.id = id;
 		this.lieu = lieu;
@@ -51,7 +51,7 @@ public class Mission extends DataBaseClass {
 		}
 	}
 
-	public void Delete() {
+	public void delete() {
 		String requetC = "DELETE FROM Mission WHERE id = " + id + ";";
 		Statement statment = null;
 		try {
@@ -61,5 +61,9 @@ public class Mission extends DataBaseClass {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public String toString(){
+		return id+ " , "+Ddebut+" , "+Dfin+" , "+lieu+" , "+projet+" , "+employe;
 	}
 }
