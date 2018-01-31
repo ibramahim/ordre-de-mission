@@ -53,10 +53,13 @@ public class DataBaseClass {
 		ArrayList<Mission> empls = new ArrayList<>();
 		try {
 			stmt = connection.createStatement();
-			res = stmt.executeQuery("SELECT * FROM Mission;");
+			res = stmt.executeQuery(
+					"SELECT Mission.id,Ddebut , Dfin,lieu , projet , employe,nom,prenom,fonction FROM Mission , Employe"
+							+ " WHERE Mission.employe = Employe.id ;");
 			while (res.next()) {
-				empls.add(new Mission(res.getInt("id"), res.getString("Ddebut"), res.getString("Dfin"),
-						res.getString("lieu"), res.getString("projet"), res.getInt("employe")));
+				Emplyer e = new Emplyer(res.getInt("employe"),res.getString("nom"), res.getString("prenom"), res.getString("fonction"));
+				empls.add(new Mission(res.getInt(1), res.getString("Ddebut"), res.getString("Dfin"),
+						res.getString("lieu"), res.getString("projet"), e));
 			}
 			return empls;
 		} catch (Exception e) {
@@ -64,15 +67,19 @@ public class DataBaseClass {
 			return null;
 		}
 	}
+
 	public ArrayList<Conge> getAllConges() {
 		Statement stmt = null;
 		ResultSet res = null;
 		ArrayList<Conge> empls = new ArrayList<>();
 		try {
 			stmt = connection.createStatement();
-			res = stmt.executeQuery("SELECT * FROM Conge;");
+			res = stmt.executeQuery("SELECT Conge.id , Ddebut , Dfin ,employe, nom , prenom , fonction FROM Conge , Employe WHERE "
+					+ "employe = Employe.id ;");
 			while (res.next()) {
-				empls.add(new Conge(res.getInt("id"), res.getString("Ddebut"), res.getString("Dfin"),res.getInt("employe")));
+				Emplyer e = new Emplyer(res.getInt("employe"),res.getString("nom"), res.getString("prenom"), res.getString("fonction"));
+				empls.add(new Conge(res.getInt("id"), res.getString("Ddebut"), res.getString("Dfin"),
+						e));
 			}
 			return empls;
 		} catch (Exception e) {

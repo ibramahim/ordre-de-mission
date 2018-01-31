@@ -1,5 +1,6 @@
 package DataBase;
 
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class Emplyer extends DataBaseClass {
@@ -15,7 +16,10 @@ public class Emplyer extends DataBaseClass {
 		this.prenom = prenom;
 		this.fonction = fonction;
 	}
-
+	
+	public Emplyer(int id){
+		this.id = id;
+	}
 	public static String getCreateTableQuery() {
 		return "CREATE TABLE Employe (" + "id INTEGER PRIMARY KEY AUTOINCREMENT ," + "nom TEXT," + "prenom TEXT,"
 				+ "fonction TEXT" + ");";
@@ -28,6 +32,9 @@ public class Emplyer extends DataBaseClass {
 		try {
 			statment = connection.createStatement();
 			statment.executeUpdate(requetC);
+			ResultSet i = statment.executeQuery("SELECT last_insert_rowid();");
+			while(i.next())
+				id = i.getInt(1);
 			statment.close();
 		} catch (Exception e) {
 			e.printStackTrace();

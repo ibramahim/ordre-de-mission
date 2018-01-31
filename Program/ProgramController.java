@@ -7,6 +7,12 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 
+import DataBase.Conge;
+import DataBase.DataBaseClass;
+import DataBase.Emplyer;
+import DataBase.Mission;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,19 +37,19 @@ public class ProgramController implements Initializable{
     private JFXButton btnAddWorker; // Value injected by FXMLLoader
 
     @FXML // fx:id="tableEmploye"
-    private TableView<?> tableEmploye; // Value injected by FXMLLoader
+    private TableView<Emplyer> tableEmploye; // Value injected by FXMLLoader
 
     @FXML // fx:id="columnNomEmploye"
-    private TableColumn<?, ?> columnNomEmploye; // Value injected by FXMLLoader
+    private TableColumn<Emplyer, String> columnNomEmploye; // Value injected by FXMLLoader
 
     @FXML // fx:id="columnPrenomEmploye"
-    private TableColumn<?, ?> columnPrenomEmploye; // Value injected by FXMLLoader
+    private TableColumn<Emplyer, String> columnPrenomEmploye; // Value injected by FXMLLoader
 
     @FXML // fx:id="columnFonctionEmploye"
-    private TableColumn<?, ?> columnFonctionEmploye; // Value injected by FXMLLoader
+    private TableColumn<Emplyer, String> columnFonctionEmploye; // Value injected by FXMLLoader
 
     @FXML // fx:id="columnDisponibleEmploye"
-    private TableColumn<?, ?> columnDisponibleEmploye; // Value injected by FXMLLoader
+    private TableColumn<Emplyer, String> columnDisponibleEmploye; // Value injected by FXMLLoader
 
     @FXML // fx:id="hBoxcarteEmploye"
     private HBox hBoxcarteEmploye; // Value injected by FXMLLoader
@@ -66,10 +72,18 @@ public class ProgramController implements Initializable{
     @FXML // fx:id="paneForSituation"
     private Pane paneForSituation; // Value injected by FXMLLoader
 
-   
-
+   //===================================
+    //OBJECTS 
+    private ObservableList<Emplyer> employes;
+    private ObservableList<Mission> missions;
+    private ObservableList<Conge> conges;
+    private DataBaseClass laBaseDeDonnee = new DataBaseClass();
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		employes = FXCollections.observableArrayList(laBaseDeDonnee.getAllEmployes());
+		missions = FXCollections.observableArrayList(laBaseDeDonnee.getAllMissions());
+		conges = FXCollections.observableArrayList(laBaseDeDonnee.getAllConges());
+		
 		// TODO Auto-generated method stub
 		hBoxAffecterA.setVisible(false);
 		hBoxcarteEmploye.setVisible(false);

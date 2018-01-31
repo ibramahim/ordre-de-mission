@@ -1,19 +1,20 @@
 package DataBase;
 
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class Conge extends DataBaseClass {
 	protected int id;
 	public String Ddebut;
 	public String Dfin;
-	public int employe;
+	public Emplyer employe;
 
-	public Conge(int id, String ddebut, String dfin, int employe) {
+	public Conge(int id, String ddebut, String dfin, Emplyer e) {
 		super();
 		this.id = id;
 		Ddebut = ddebut;
 		Dfin = dfin;
-		this.employe = employe;
+		this.employe = e;
 	}
 
 	public static String getCreateTableQuery() {
@@ -23,11 +24,14 @@ public class Conge extends DataBaseClass {
 
 	public void ajouter() {
 		String requetC = "INSERT INTO Conge(Ddebut , Dfin , employe) VALUES ('" + Ddebut + "','" + Dfin + "' , "
-				+ employe + ");";
+				+ employe.id + ");";
 		Statement statment = null;
 		try {
 			statment = connection.createStatement();
 			statment.executeUpdate(requetC);
+			ResultSet i = statment.executeQuery("SELECT last_insert_rowid();");
+			while(i.next())
+				id = i.getInt(1);
 			statment.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -35,7 +39,7 @@ public class Conge extends DataBaseClass {
 	}
 
 	public void modifier() {
-		String requetC = "UPDATE Conge SET Ddebut = '" + Ddebut + "',Dfin = '" + Dfin + "' , employe = " + employe
+		String requetC = "UPDATE Conge SET Ddebut = '" + Ddebut + "',Dfin = '" + Dfin + "' , employe = " + employe.id
 				+ " WHERE id = " + id + ";";
 		Statement statment = null;
 		try {
@@ -58,8 +62,8 @@ public class Conge extends DataBaseClass {
 			e.printStackTrace();
 		}
 	}
-	
-	public String toString(){
-		return id + " , " + Ddebut + " , "+Dfin + " , "+employe;
+
+	public String toString() {
+		return id + " , " + Ddebut + " , " + Dfin + " , " + employe.nom + " , " + employe.prenom;
 	}
 }
