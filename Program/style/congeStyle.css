@@ -1,4 +1,4 @@
-.jfx-date-picker ,.jfx-text-field {
+.jfx-date-picker .jfx-text-field {
 	-fx-prompt-text-fill: #ffffff;
 	-fx-text-fill: #ffffff;
 	-fx-font-family:Roboto;

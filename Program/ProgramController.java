@@ -11,16 +11,23 @@ import DataBase.Conge;
 import DataBase.DataBaseClass;
 import DataBase.Emplyer;
 import DataBase.Mission;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.control.cell.TextFieldTableCellBuilder;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.util.Callback;
 
 public class ProgramController implements Initializable{
 
@@ -83,14 +90,50 @@ public class ProgramController implements Initializable{
 		employes = FXCollections.observableArrayList(laBaseDeDonnee.getAllEmployes());
 		missions = FXCollections.observableArrayList(laBaseDeDonnee.getAllMissions());
 		conges = FXCollections.observableArrayList(laBaseDeDonnee.getAllConges());
-		
+		tableEmploye.setItems(employes);
+		columnNomEmploye.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Emplyer,String>, ObservableValue<String>>() {
+
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<Emplyer, String> param) {
+				// TODO Auto-generated method stub
+				return new SimpleStringProperty(param.getValue().nom);
+			}
+		});
+		columnPrenomEmploye.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Emplyer,String>, ObservableValue<String>>() {
+
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<Emplyer, String> param) {
+				// TODO Auto-generated method stub
+				return new SimpleStringProperty(param.getValue().prenom);
+			}
+		});
+		columnFonctionEmploye.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Emplyer,String>, ObservableValue<String>>() {
+
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<Emplyer, String> param) {
+				// TODO Auto-generated method stub
+				return new SimpleStringProperty(param.getValue().fonction);
+			}
+		});
+		columnNomEmploye.setCellFactory(new Callback<TableColumn<Emplyer,String>, TableCell<Emplyer,String>>() {
+
+			@SuppressWarnings({ "unchecked", "deprecation" })
+			@Override
+			public TableCell<Emplyer, String> call(TableColumn<Emplyer, String> param) {
+				// TODO Auto-generated method stub
+				return ;
+			}
+		});
+		columnPrenomEmploye.setCellFactory(TextFieldTableCell.<Emplyer>forTableColumn());
+		columnFonctionEmploye.setCellFactory(TextFieldTableCell.<Emplyer>forTableColumn());
 		// TODO Auto-generated method stub
 		hBoxAffecterA.setVisible(false);
 		hBoxcarteEmploye.setVisible(false);
 		
 	}
-	@FXML
-    void insertStudentToTheDB(ActionEvent event) {
-
+	@FXML void insertEmployeToTheDB(ActionEvent event) {
+		Emplyer e = new Emplyer(12, txtInWorkerName.getText(), txtInWorkerLastName.getText(), txtInWorkerLastName1.getText());
+		e.ajouter();
+		employes.add(e);
     }
 }
