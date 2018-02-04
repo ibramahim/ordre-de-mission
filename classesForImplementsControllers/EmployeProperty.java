@@ -1,5 +1,6 @@
 package classesForImplementsControllers;
 
+import DataBase.Emplyer;
 import javafx.beans.property.SimpleStringProperty;
 
 public class EmployeProperty {
@@ -8,10 +9,17 @@ public class EmployeProperty {
 	private SimpleStringProperty prenom;
 	private SimpleStringProperty fonction;
 	String disponible;
-	public EmployeProperty(String nom , String prenom , String fonction){
+	public EmployeProperty(int id ,String nom , String prenom , String fonction){
+		this.id = id;
 		this.nom = new SimpleStringProperty(nom);
 		this.prenom = new SimpleStringProperty(prenom);
 		this.fonction = new SimpleStringProperty(fonction);
+	}
+	public EmployeProperty(Emplyer e){
+		this.id = e.id;
+		this.nom = new SimpleStringProperty(e.nom);
+		this.prenom = new SimpleStringProperty(e.prenom);
+		this.fonction = new SimpleStringProperty(e.fonction);
 	}
 	public int getId() {
 		return id;

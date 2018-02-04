@@ -11,17 +11,22 @@ import DataBase.Conge;
 import DataBase.DataBaseClass;
 import DataBase.Emplyer;
 import DataBase.Mission;
+import classesForImplementsControllers.EmployeProperty;
+import classesForImplementsControllers.initTables;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.control.cell.TextFieldTableCellBuilder;
 import javafx.scene.layout.HBox;
@@ -44,19 +49,19 @@ public class ProgramController implements Initializable{
     private JFXButton btnAddWorker; // Value injected by FXMLLoader
 
     @FXML // fx:id="tableEmploye"
-    private TableView<Emplyer> tableEmploye; // Value injected by FXMLLoader
+    private TableView<EmployeProperty> tableEmploye; // Value injected by FXMLLoader
 
     @FXML // fx:id="columnNomEmploye"
-    private TableColumn<Emplyer, String> columnNomEmploye; // Value injected by FXMLLoader
+    private TableColumn<EmployeProperty, String> columnNomEmploye; // Value injected by FXMLLoader
 
     @FXML // fx:id="columnPrenomEmploye"
-    private TableColumn<Emplyer, String> columnPrenomEmploye; // Value injected by FXMLLoader
+    private TableColumn<EmployeProperty, String> columnPrenomEmploye; // Value injected by FXMLLoader
 
     @FXML // fx:id="columnFonctionEmploye"
-    private TableColumn<Emplyer, String> columnFonctionEmploye; // Value injected by FXMLLoader
+    private TableColumn<EmployeProperty, String> columnFonctionEmploye; // Value injected by FXMLLoader
 
     @FXML // fx:id="columnDisponibleEmploye"
-    private TableColumn<Emplyer, String> columnDisponibleEmploye; // Value injected by FXMLLoader
+    private TableColumn<EmployeProperty, String> columnDisponibleEmploye; // Value injected by FXMLLoader
 
     @FXML // fx:id="hBoxcarteEmploye"
     private HBox hBoxcarteEmploye; // Value injected by FXMLLoader
@@ -80,60 +85,19 @@ public class ProgramController implements Initializable{
     private Pane paneForSituation; // Value injected by FXMLLoader
 
    //===================================
-    //OBJECTS 
-    private ObservableList<Emplyer> employes;
-    private ObservableList<Mission> missions;
-    private ObservableList<Conge> conges;
-    private DataBaseClass laBaseDeDonnee = new DataBaseClass();
+    @SuppressWarnings("unused")
+	//OBJECTS
+    initTables employesInit;
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		employes = FXCollections.observableArrayList(laBaseDeDonnee.getAllEmployes());
-		missions = FXCollections.observableArrayList(laBaseDeDonnee.getAllMissions());
-		conges = FXCollections.observableArrayList(laBaseDeDonnee.getAllConges());
-		tableEmploye.setItems(employes);
-		columnNomEmploye.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Emplyer,String>, ObservableValue<String>>() {
-
-			@Override
-			public ObservableValue<String> call(CellDataFeatures<Emplyer, String> param) {
-				// TODO Auto-generated method stub
-				return new SimpleStringProperty(param.getValue().nom);
-			}
-		});
-		columnPrenomEmploye.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Emplyer,String>, ObservableValue<String>>() {
-
-			@Override
-			public ObservableValue<String> call(CellDataFeatures<Emplyer, String> param) {
-				// TODO Auto-generated method stub
-				return new SimpleStringProperty(param.getValue().prenom);
-			}
-		});
-		columnFonctionEmploye.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Emplyer,String>, ObservableValue<String>>() {
-
-			@Override
-			public ObservableValue<String> call(CellDataFeatures<Emplyer, String> param) {
-				// TODO Auto-generated method stub
-				return new SimpleStringProperty(param.getValue().fonction);
-			}
-		});
-		columnNomEmploye.setCellFactory(new Callback<TableColumn<Emplyer,String>, TableCell<Emplyer,String>>() {
-
-			@SuppressWarnings({ "unchecked", "deprecation" })
-			@Override
-			public TableCell<Emplyer, String> call(TableColumn<Emplyer, String> param) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-		});
-		columnPrenomEmploye.setCellFactory(TextFieldTableCell.<Emplyer>forTableColumn());
-		columnFonctionEmploye.setCellFactory(TextFieldTableCell.<Emplyer>forTableColumn());
-		// TODO Auto-generated method stub
 		hBoxAffecterA.setVisible(false);
 		hBoxcarteEmploye.setVisible(false);
+		employesInit = new initTables();
+		employesInit.initTableemployes(tableEmploye, columnNomEmploye, columnPrenomEmploye, columnFonctionEmploye, columnDisponibleEmploye);
 		
 	}
 	@FXML void insertEmployeToTheDB(ActionEvent event) {
 		Emplyer e = new Emplyer(12, txtInWorkerName.getText(), txtInWorkerLastName.getText(), txtInWorkerLastName1.getText());
-		e.ajouter();
-		employes.add(e);
+		employesInit.addToTable(e);
     }
 }

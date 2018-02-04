@@ -3,8 +3,10 @@ package DataBase;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import classesForImplementsControllers.EmployeProperty;
+
 public class Emplyer extends DataBaseClass {
-	protected int id;
+	public int id;
 	public String nom;
 	public String prenom;
 	public String fonction;
@@ -16,7 +18,13 @@ public class Emplyer extends DataBaseClass {
 		this.prenom = prenom;
 		this.fonction = fonction;
 	}
-	
+	public Emplyer(EmployeProperty e){
+		super();
+		this.id = e.getId();
+		this.nom = e.getNomProperty().getValue();
+		this.prenom = e.getPrenomProperty().getValue();
+		this.fonction = e.getFonctionProperty().getValue();
+	}
 	public Emplyer(int id){
 		this.id = id;
 	}

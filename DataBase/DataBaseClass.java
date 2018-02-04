@@ -5,6 +5,8 @@ import java.sql.*;
 
 import java.util.ArrayList;
 
+import classesForImplementsControllers.EmployeProperty;
+
 public class DataBaseClass {
 
 	static Connection connection;
@@ -38,6 +40,24 @@ public class DataBaseClass {
 			res = stmt.executeQuery("SELECT * FROM Employe;");
 			while (res.next()) {
 				empls.add(new Emplyer(res.getInt("id"), res.getString("nom"), res.getString("prenom"),
+						res.getString("fonction")));
+			}
+			return empls;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public ArrayList<EmployeProperty> getAllEmployesProperty() {
+		Statement stmt = null;
+		ResultSet res = null;
+		ArrayList<EmployeProperty> empls = new ArrayList<>();
+		try {
+			stmt = connection.createStatement();
+			res = stmt.executeQuery("SELECT * FROM Employe;");
+			while (res.next()) {
+				empls.add(new EmployeProperty(res.getInt("id"), res.getString("nom"), res.getString("prenom"),
 						res.getString("fonction")));
 			}
 			return empls;
