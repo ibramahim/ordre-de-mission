@@ -1,9 +1,12 @@
 package classesForImplementsControllers;
 
+import java.util.ArrayList;
+
 import DataBase.Conge;
 import DataBase.DataBaseClass;
 import DataBase.Emplyer;
 import DataBase.Mission;
+import Program.ProgramController;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,65 +19,91 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.Callback;
 
 public class initTables {
-    private ObservableList<EmployeProperty> employes;
-    private ObservableList<Mission> missions;
-    private ObservableList<Conge> conges;
-    public initTables(){
-    	employes = FXCollections.observableArrayList(laBaseDeDonnee.getAllEmployesProperty());
-		missions = FXCollections.observableArrayList(laBaseDeDonnee.getAllMissions());
-		conges = FXCollections.observableArrayList(laBaseDeDonnee.getAllConges());
-    }
-    private DataBaseClass laBaseDeDonnee = new DataBaseClass();
-    public void initTableemployes(TableView<EmployeProperty> tableEmploye
-    		, TableColumn<EmployeProperty, String> columnNomEmploye
-    		,TableColumn<EmployeProperty, String> columnPrenomEmploye
-    		,TableColumn<EmployeProperty, String> columnFonctionEmploye
-    		,TableColumn<EmployeProperty, String> columnDisponibleEmploye){
-		tableEmploye.setItems(employes);
-		columnNomEmploye.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<EmployeProperty,String>, ObservableValue<String>>() {
+	ProgramController programController;
+	public initTables(ProgramController programController) {
+		this.programController = programController;
+	}
 
-			@Override
-			public ObservableValue<String> call(CellDataFeatures<EmployeProperty, String> param) {
-				// TODO Auto-generated method stub
-				return param.getValue().getNomProperty();
-			}
-		});
-		columnPrenomEmploye.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<EmployeProperty,String>, ObservableValue<String>>() {
 
-			@Override
-			public ObservableValue<String> call(CellDataFeatures<EmployeProperty, String> param) {
-				// TODO Auto-generated method stub
-				return param.getValue().getPrenomProperty();
-			}
-		});
-		columnFonctionEmploye.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<EmployeProperty,String>, ObservableValue<String>>() {
+	public void initTableemployes(TableView<EmployeProperty> tableEmploye,
+			TableColumn<EmployeProperty, String> columnNomEmploye,
+			TableColumn<EmployeProperty, String> columnPrenomEmploye,
+			TableColumn<EmployeProperty, String> columnFonctionEmploye,
+			TableColumn<EmployeProperty, String> columnDisponibleEmploye) {
+		tableEmploye.setItems(programController.employes);
+		columnDisponibleEmploye.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<EmployeProperty, String>, ObservableValue<String>>() {
 
-			@Override
-			public ObservableValue<String> call(CellDataFeatures<EmployeProperty, String> param) {
-				// TODO Auto-generated method stub
-				return param.getValue().getFonctionProperty();
-			}
-		});
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<EmployeProperty, String> param) {
+						// TODO Auto-generated method stub
+						return param.getValue().getDisponible().dispoCongOuMiss.getEtat();
+					}
+				});
+		columnNomEmploye.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<EmployeProperty, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<EmployeProperty, String> param) {
+						// TODO Auto-generated method stub
+						return param.getValue().getNomProperty();
+					}
+				});
+		columnPrenomEmploye.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<EmployeProperty, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<EmployeProperty, String> param) {
+						// TODO Auto-generated method stub
+						return param.getValue().getPrenomProperty();
+					}
+				});
+		columnFonctionEmploye.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<EmployeProperty, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<EmployeProperty, String> param) {
+						// TODO Auto-generated method stub
+						return param.getValue().getFonctionProperty();
+					}
+				});
 		tableEmploye.setEditable(true);
 		columnNomEmploye.setCellFactory(TextFieldTableCell.<EmployeProperty>forTableColumn());
 		columnPrenomEmploye.setCellFactory(TextFieldTableCell.forTableColumn());
 		columnFonctionEmploye.setCellFactory(TextFieldTableCell.forTableColumn());
-		columnFonctionEmploye.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<EmployeProperty,String>>() {
-			
+		columnFonctionEmploye.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<EmployeProperty, String>>() {
+
 			@Override
 			public void handle(CellEditEvent<EmployeProperty, String> event) {
 				event.getRowValue().setFonction(event.getNewValue());
-				// TODO Auto-generated method stub
-				
+				new Emplyer(event.getRowValue()).modifier();
+
 			}
 		});
-		tableEmploye.setItems(employes);
-		// TODO Auto-generated method stub
-    }
-    
-    public void addToTable(Emplyer e){
+		columnPrenomEmploye.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<EmployeProperty, String>>() {
+
+			@Override
+			public void handle(CellEditEvent<EmployeProperty, String> event) {
+				// TODO Auto-generated method stub
+				event.getRowValue().setPrenom(event.getNewValue());
+				new Emplyer(event.getRowValue()).modifier();
+			}
+		});
+		columnNomEmploye.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<EmployeProperty, String>>() {
+
+			@Override
+			public void handle(CellEditEvent<EmployeProperty, String> event) {
+				// TODO Auto-generated method stub
+				event.getRowValue().setNom(event.getNewValue());
+				new Emplyer(event.getRowValue()).modifier();
+			}
+		});
+		tableEmploye.setItems(programController.employes);
+	}
+
+	public void addToTable(Emplyer e) {
 		e.ajouter();
-		employes.add(new EmployeProperty(e));
-    }
-    
+		programController.employes.add(new EmployeProperty(e));
+	}
+
 }

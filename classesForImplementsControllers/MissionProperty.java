@@ -1,8 +1,14 @@
 package classesForImplementsControllers;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import DataBase.Disponible;
+import DataBase.EmployeEtat;
 import javafx.beans.property.SimpleStringProperty;
 
-public class MissionProperty {
+public class MissionProperty extends Sortie{
 	private int id;
 	private SimpleStringProperty lieu;
 	private SimpleStringProperty projet;
@@ -18,6 +24,8 @@ public class MissionProperty {
 		Ddebut = new SimpleStringProperty(ddebut);
 		Dfin = new SimpleStringProperty(dfin);
 		this.employe = e;
+		Disponible d = isEmployeDispo()?new Disponible(EmployeEtat.DISPONIBLE) : new Disponible(EmployeEtat.DansUneMission, this);
+		e.setDisponibilite(d);
 	}
 
 	public int getId() {
@@ -67,6 +75,8 @@ public class MissionProperty {
 	public void setEmploye(EmployeProperty employe) {
 		this.employe = employe;
 	}
-	
+	public boolean isEmployeDispo(){
+		return !isSupperieurOfToday(Ddebut.getValue()) && isSupperieurOfToday(Dfin.getValue());
+	}
 }
 

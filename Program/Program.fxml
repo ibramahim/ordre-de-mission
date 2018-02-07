@@ -128,19 +128,19 @@
                                           <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                        </padding>
                                        <children>
-                                          <VBox alignment="CENTER_LEFT" prefHeight="116.0" prefWidth="203.0" spacing="10.0" style="-fx-background-color: ;">
+                                          <VBox alignment="CENTER_LEFT" prefHeight="102.0" prefWidth="301.0" spacing="10.0" style="-fx-background-color: ;">
                                              <children>
-                                                <Text fx:id="textNomEmploye" strokeType="OUTSIDE" strokeWidth="0.0" text="nom :  " wrappingWidth="184.9453125">
+                                                <Text fx:id="textNomEmploye" strokeType="OUTSIDE" strokeWidth="0.0" text="nom :  " wrappingWidth="285.9453125">
                                                    <font>
                                                       <Font name="Roboto Condensed Bold" size="20.0" />
                                                    </font>
                                                 </Text>
-                                                <Text fx:id="textPrenomEmploye" layoutX="20.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="prenom : " wrappingWidth="182.439453125">
+                                                <Text fx:id="textPrenomEmploye" layoutX="20.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="prenom : " wrappingWidth="292.439453125">
                                                    <font>
                                                       <Font name="Roboto Condensed Bold" size="20.0" />
                                                    </font>
                                                 </Text>
-                                                <Text fx:id="textFonctionEmploye" layoutX="20.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fonction :" wrappingWidth="184.62109375">
+                                                <Text fx:id="textFonctionEmploye" layoutX="20.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fonction :" wrappingWidth="288.62109375">
                                                    <font>
                                                       <Font name="Roboto Condensed Bold" size="20.0" />
                                                    </font>

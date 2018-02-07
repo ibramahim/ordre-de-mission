@@ -1,9 +1,15 @@
 package classesForImplementsControllers;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import DataBase.Disponible;
+import DataBase.EmployeEtat;
 import DataBase.Emplyer;
 import javafx.beans.property.SimpleStringProperty;
 
-public class CongeProperty {
+public class CongeProperty extends Sortie{
 	private int id;
 	private SimpleStringProperty Ddebut;
 	private SimpleStringProperty Dfin;
@@ -46,6 +52,11 @@ public class CongeProperty {
 		Ddebut = new SimpleStringProperty(ddebut);
 		Dfin = new SimpleStringProperty(dfin);
 		this.employe = e;
+		Disponible d = isEmployeDispo()?new Disponible(EmployeEtat.DISPONIBLE) : new Disponible(EmployeEtat.DANSUNECONGE, this);// 1 pour conge
+		e.setDisponibilite(d);
+	}
+	public boolean isEmployeDispo(){
+		return !isSupperieurOfToday(Ddebut.getValue()) && isSupperieurOfToday(Dfin.getValue());
 	}
 
 }

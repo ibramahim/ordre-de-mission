@@ -19,8 +19,13 @@ public class Mission extends DataBaseClass {
 		Ddebut = ddebut;
 		Dfin = dfin;
 		this.employe = e;
+		Disponible d = isEmployeDispo()?new Disponible(EmployeEtat.DISPONIBLE) : new Disponible(EmployeEtat.DansUneMission, this);// 2 pour mission
+		e.setDisponibilite(d);
 	}
-
+	
+	public boolean isEmployeDispo(){
+		return !(!isSupperieurOfToday(Ddebut) && isSupperieurOfToday(Dfin));
+	}
 	public static String getCreateTableQuery() {
 		return "CREATE TABLE Mission (" + "id INTEGER PRIMARY KEY AUTOINCREMENT ," + "Ddebut TEXT," + "Dfin TEXT,"
 				+ "lieu TEXT," + "projet TEXT ,employe INTEGER , FOREIGN KEY(employe) REFERENCES employe(id)" + ");";
@@ -69,5 +74,9 @@ public class Mission extends DataBaseClass {
 	
 	public String toString(){
 		return id+ " , "+Ddebut+" , "+Dfin+" , "+lieu+" , "+projet+" , "+employe;
+	}
+	public boolean equals(Object o){
+		Mission e  = (Mission)o;
+		return e.id == id;
 	}
 }

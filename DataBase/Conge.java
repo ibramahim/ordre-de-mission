@@ -15,6 +15,8 @@ public class Conge extends DataBaseClass {
 		Ddebut = ddebut;
 		Dfin = dfin;
 		this.employe = e;
+		Disponible d = isEmployeDispo()?new Disponible(EmployeEtat.DISPONIBLE) : new Disponible(EmployeEtat.DANSUNECONGE, this);// 1 pour conge
+		e.setDisponibilite(d);
 	}
 
 	public static String getCreateTableQuery() {
@@ -65,5 +67,12 @@ public class Conge extends DataBaseClass {
 
 	public String toString() {
 		return id + " , " + Ddebut + " , " + Dfin + " , " + employe.nom + " , " + employe.prenom;
+	}
+	public boolean equals(Object o){
+		Conge e  = (Conge)o;
+		return e.id == id;
+	}
+	public boolean isEmployeDispo(){
+		return !(!isSupperieurOfToday(Ddebut) && isSupperieurOfToday(Dfin));
 	}
 }

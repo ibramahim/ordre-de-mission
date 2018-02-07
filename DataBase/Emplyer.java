@@ -10,13 +10,15 @@ public class Emplyer extends DataBaseClass {
 	public String nom;
 	public String prenom;
 	public String fonction;
-
+	public Disponible laDisponibilite;
+	
 	public Emplyer(int id, String nom, String prenom, String fonction) {
 		super();
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.fonction = fonction;
+		laDisponibilite = new Disponible(EmployeEtat.DISPONIBLE);
 	}
 	public Emplyer(EmployeProperty e){
 		super();
@@ -27,6 +29,9 @@ public class Emplyer extends DataBaseClass {
 	}
 	public Emplyer(int id){
 		this.id = id;
+	}
+	public void setDisponibilite(Disponible d){
+		laDisponibilite = d;
 	}
 	public static String getCreateTableQuery() {
 		return "CREATE TABLE Employe (" + "id INTEGER PRIMARY KEY AUTOINCREMENT ," + "nom TEXT," + "prenom TEXT,"
@@ -75,5 +80,9 @@ public class Emplyer extends DataBaseClass {
 	}
 	public String toString(){
 		return id +" , "+nom+" , "+prenom+" , "+fonction;
+	}
+	public boolean equals(Object o){
+		Emplyer e  = (Emplyer)o;
+		return e.id == id;
 	}
 }
